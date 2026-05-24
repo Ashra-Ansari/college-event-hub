@@ -1,0 +1,33 @@
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="/" class="navbar-brand">
+      <div class="navbar-logo">📅</div>
+      <div class="navbar-title">College<span>Event</span>Hub</div>
+    </a>
+    <div class="navbar-links">
+      <a href="/">Home</a>
+      <a href="/events">Events</a>
+      <a href="/#featured-categories">Categories</a>
+      <a href="/#featured-how-it-works">How It Works</a>
+    </div>
+    <div class="navbar-actions">
+      
+      <% if(!currentUser) { %>
+      <a href="/users/login"
+        ><button class="custom-btn custom-btn-ghost"><b>Log In</b></button></a
+      >
+      <a href="/users/signup"
+        ><button class="custom-btn custom-btn-primary"><b>Sign Up</b></button></a
+      >
+      <% } %>
+
+      <% if(currentUser) { %>
+      <a href="/users/logout"
+        ><button class="custom-btn custom-btn-ghost"><b>Logout</b></button></a
+      >
+      <% } %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,162 @@
+<% layout('/layouts/boilerplate') -%>
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h2>Create New Event</h2>
+
+    <form
+      action="/events"
+      method="POST"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          name="event[title]"
+          class="form-control"
+          placeholder="Add a catchy title"
+          required
+        />
+        <div class="valid-feedback">Title Looks good!</div>
+        <div class="invalid-feedback">Title Required*</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          name="event[description]"
+          rows="3"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Description Required*</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="event[category]" class="form-control" required>
+          <option value="">Select a category</option>
+          <option value="Tech & Hackathons">Tech & Hackathons</option>
+          <option value="Music & Concerts">Music & Concerts</option>
+          <option value="Career & Jobs">Career & Jobs</option>
+          <option value="Sports & Games">Sports & Games</option>
+          <option value="Workshops">Workshops</option>
+          <option value="Art & Culture">Art & Culture</option>
+          <option value="Talks & Seminars">Talks & Seminars</option>
+          <option value="Social & Clubs">Social & Clubs</option>
+        </select>
+        <div class="invalid-feedback">Category Required*</div>
+      </div>
+
+      <!-- <div class="mb-3">
+        <label for="image" class="form-label">Image Link </label>
+        <input
+          type="text"
+          name="event[image]"
+          class="form-control"
+          placeholder="Enter URL"
+        />
+      </div> -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Image </label>
+        <input type="file" name="event[image]" class="form-control" />
+        required
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label for="date" class="form-label"> Date</label>
+          <input
+            type="date"
+            name="event[date]"
+            class="form-control"
+            placeholder="Enter Date"
+            required
+          />
+          <div class="invalid-feedback">Date Required*</div>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="time" class="form-label"> Time</label>
+          <input
+            type="time"
+            name="event[time]"
+            class="form-control"
+            placeholder="Enter Time"
+            required
+          />
+          <div class="invalid-feedback">Time Required*</div>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="duration" class="form-label"> Duration</label>
+          <input
+            type="text"
+            name="event[duration]"
+            class="form-control"
+            placeholder="4 Hours"
+            required
+          />
+          <div class="invalid-feedback">Duration Required*</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="venue" class="form-label"> Venue</label>
+          <input
+            type="text"
+            name="event[venue]"
+            class="form-control"
+            placeholder="Seminar Hall"
+            required
+          />
+          <div class="invalid-feedback">Venue Required*</div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="teamSize" class="form-label"> Team-Size</label>
+          <input
+            type="text"
+            name="event[teamSize]"
+            class="form-control"
+            placeholder="2–4 members / Individual"
+            required
+          />
+          <div class="invalid-feedback">Team-Size Required*</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="technologies" class="form-label"
+          >Technologies Allowed (one per line)</label
+        >
+        <textarea
+          name="event[technologies]"
+          rows="4"
+          class="form-control"
+          placeholder="C++&#10;Java&#10;Python"
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="prizes" class="form-label">Prizes (one per line)</label>
+        <textarea
+          name="event[prizes]"
+          rows="3"
+          class="form-control"
+          placeholder="1st – 8000 + Certificate&#10;2nd – 5000 + Certificate"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="rules" class="form-label">Rules (one per line)</label>
+        <textarea
+          name="event[rules]"
+          rows="4"
+          class="form-control"
+          placeholder="No plagiarism&#10;Individual participation"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-dark">Create Event</button>
+    </form>
+  </div>
+</div>

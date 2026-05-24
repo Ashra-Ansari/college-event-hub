@@ -1,0 +1,151 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h2>Edit Event</h2>
+
+    <form
+      action="/events/<%= event._id %>?_method=PUT"
+      method="POST"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          name="event[title]"
+          class="form-control"
+          value="<%= event.title%>"
+          required
+        />
+        <div class="valid-feedback">Title Looks good!</div>
+        <div class="invalid-feedback">Title Required*</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          name="event[description]"
+          rows="3"
+          class="form-control"
+          value="<%= event.description%>"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Description Required*</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="event[category]" class="form-control" required>
+          <option value="">Select a category</option>
+          <option value="Tech & Hackathons" <%= event.category === "Tech & Hackathons" ? "selected" : "" %>>Tech & Hackathons</option>
+          <option value="Music & Concerts" <%= event.category === "Music & Concerts" ? "selected" : "" %>>Music & Concerts</option>
+          <option value="Career & Jobs" <%= event.category === "Career & Jobs" ? "selected" : "" %>>Career & Jobs</option>
+          <option value="Sports & Games" <%= event.category === "Sports & Games" ? "selected" : "" %>>Sports & Games</option>
+          <option value="Workshops" <%= event.category === "Workshops" ? "selected" : "" %>>Workshops</option>
+          <option value="Art & Culture" <%= event.category === "Art & Culture" ? "selected" : "" %>>Art & Culture</option>
+          <option value="Talks & Seminars" <%= event.category === "Talks & Seminars" ? "selected" : "" %>>Talks & Seminars</option>
+          <option value="Social & Clubs" <%= event.category === "Social & Clubs" ? "selected" : "" %>>Social & Clubs</option>
+        </select>
+        <div class="invalid-feedback">Category Required*</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload New Image  </label>
+        <input
+          type="file"
+          name="event[image]"
+          class="form-control"
+        />
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label for="date" class="form-label"> Date</label>
+          <input
+            type="date"
+            name="event[date]"
+            class="form-control"
+            value="<%= event.date%>"
+            required
+          />
+          <div class="invalid-feedback">Date Required*</div>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="time" class="form-label"> Time</label>
+          <input
+            type="time"
+            name="event[time]"
+            class="form-control"
+            value="<%= event.time%>"
+            required
+          />
+          <div class="invalid-feedback">Time Required*</div>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="duration" class="form-label"> Duration</label>
+          <input
+            type="text"
+            name="event[duration]"
+            class="form-control"
+            value="<%= event.duration%>"
+            required
+          />
+          <div class="invalid-feedback">Duration Required*</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="venue" class="form-label"> Venue</label>
+          <input
+            type="text"
+            name="event[venue]"
+            class="form-control"
+            value="<%= event.venue%>"
+            required
+          />
+          <div class="invalid-feedback">Venue Required*</div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="teamSize" class="form-label"> Team-Size</label>
+          <input
+            type="text"
+            name="event[teamSize]"
+            class="form-control"
+            value="<%= event.teamSize%>"
+            required
+          />
+          <div class="invalid-feedback">Team-Size Required*</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="technologies" class="form-label"
+          >Technologies Allowed (one per line)</label
+        >
+        <textarea name="event[technologies]" rows="4" class="form-control">
+<%= event.technologies.join('\n') %></textarea
+        >
+      </div>
+  
+
+
+      <div class="mb-3">
+        <label for="prizes" class="form-label">Prizes (one per line)</label>
+        <textarea name="event[prizes]" rows="3" class="form-control">
+<%= event.prizes.join('\n') %></textarea
+        >
+      </div>
+      <div class="mb-3">
+        <label for="rules" class="form-label">Rules (one per line)</label>
+        <textarea name="event[rules]" rows="4" class="form-control">
+<%= event.rules.join('\n') %></textarea
+        >
+      </div>
+
+      <button type="submit" class="btn btn-dark">Edit</button>
+    </form>
+  </div>
+</div>
