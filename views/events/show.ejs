@@ -19,13 +19,14 @@
       <li><strong>Team Size:</strong> <%= event.teamSize %></li>
     </ul>
 
-    <h4>Technologies Allowed</h4>
-    <ul class="list-unstyled mb-3">
-      <% event.technologies.forEach(tech => { %>
-        <li>• <%= tech %></li>
-      <% }) %>
-    </ul>
-
+<% if (event.technologies && event.technologies.length > 0) { %>
+  <h4>Technologies Allowed</h4>
+  <ul class="list-unstyled mb-3">
+    <% event.technologies.forEach(tech => { %>
+      <li>• <%= tech %></li>
+    <% }) %>
+  </ul>
+<% } %>
     <h4>Prizes</h4>
     <ul class="list-unstyled mb-3">
       <% event.prizes.forEach(prize => { %>

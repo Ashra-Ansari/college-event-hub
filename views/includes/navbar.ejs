@@ -29,5 +29,25 @@
       >
       <% } %>
     </div>
-  </div>
+
+    <button class="mobile-menu-btn" type="button" aria-label="Open menu">
+      <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="mobile-menu">
+  <a href="/">Home</a>
+  <a href="/events">Events</a>
+  <a href="/#featured-categories">Categories</a>
+  <a href="/#featured-how-it-works">How It Works</a>
+
+  <% if(!currentUser) { %>
+    <a href="/users/login">Log In</a>
+    <a href="/users/signup">Sign Up</a>
+  <% } %>
+
+  <% if(currentUser) { %>
+    <a href="/users/logout">Logout</a>
+  <% } %>
+</div>
+</div>
 </nav>

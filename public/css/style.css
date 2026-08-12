@@ -211,27 +211,35 @@ a {
   font-size: 1.25rem;
 }
 
-/* cards  */
-/* .event-card {
-  border: none !important;
-  margin-bottom: 2rem;
+.mobile-menu {
+  position: fixed;
+  top: 81px;
+  right: 0;
+  left: auto;
+  width: 160px;
+  height: calc(70vh - 64px);
+  border-radius: 15px 0 0 15px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 1.5rem;
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.15);
+  z-index: 49;
+  cursor: pointer;
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
 }
 
-.card-img-top {
-  border-radius: 1rem !important;
-  width: 100% !important;
-  object-fit: cover !important;
+.mobile-menu.active {
+  transform: translateX(0);
 }
-.card-body {
-  padding: 0 !important;
-}
-.card-text {
-  font-weight: 400 !important;
-}
-.event-link {
+
+.mobile-menu a {
+  display: block;
+  padding: 1rem 0;
   text-decoration: none;
+  color: var(--fg);
 }
-/* card effect  */
 .card-img-overlay {
   opacity: 0;
 }
@@ -733,4 +741,9 @@ html {
   color: #9ca3af;
   border-top: 1px solid #1f2933;
   padding-top: 15px;
+}
+
+.accordion-body {
+  background-color: rgba(63, 63, 63, 0.95);
+  color: white;
 }
