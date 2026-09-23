@@ -1,4 +1,5 @@
 const Event = require("../models/event");
+const { cloudinary } = require("../cloudConfig.js");
 
 module.exports.index = async (req, res) => {
   const allEvents = await Event.find({});
@@ -23,7 +24,6 @@ module.exports.showEvent = async (req, res) => {
     req.flash("error", "Event you requested for does not exist!");
     return res.redirect("/events");
   }
-  // console.log(event);
   res.render("events/show.ejs", { event });
 };
 
@@ -66,9 +66,19 @@ module.exports.updateEvent = async (req, res) => {
 
 module.exports.destroyEvent = async (req, res) => {
   let { id } = req.params;
-  await Event.findByIdAndDelete(id, { ...req.body.event });
+
+  const event = await Event.findById(id);
+
+  if (event.image && event.image.filename) {
+    await cloudinary.uploader.destroy(event.image.filename);
+  }
+
+  await Event.findByIdAndDelete(id);
+
   console.log("Event deleted");
+
   req.flash("success", "Event deleted successfully!");
+
   res.redirect("/events");
 };
 

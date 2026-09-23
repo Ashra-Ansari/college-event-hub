@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review.js");
-const { reviewSchema } = require("../schema.js");
 const eventSchema = new Schema(
   {
     title: {

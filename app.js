@@ -38,6 +38,8 @@ async function main() {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+
+// This middleware parses the form data and puts it into: req.body
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
@@ -59,6 +61,8 @@ store.on("error", (err) => {
 // 3. Pass the defined store into your options
 const sessionOptions = {
   secret: process.env.SECRET,
+
+  // So if the user keeps making requests but their session hasn't changed, Express doesn't unnecessarily save it again.
   resave: false,
   saveUninitialized: true,
   store: store, // Uses the store variable from step 1
