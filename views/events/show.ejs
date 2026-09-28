@@ -40,9 +40,24 @@
         <li>• <%= rule %></li>
       <% }) %>
     </ul>    
+ <!-- // REGISTER -->
+
+<% if (currentUser && currentUser.role === "student") { %>
+  <div class="text-center my-4">
+    <% if (registration) { %>
+      <button class="btn btn-secondary" disabled>
+        Already Registered
+      </button>
+    <% } else { %>
+      <form action="/events/<%= event._id %>/register" method="GET">
+        <button class="btn btn-success">Register</button>
+      </form>
+    <% } %>
+  </div>
+<% } %>
 
 
-    <!-- Edit/Delete Buttons -->
+<!-- Edit/Delete Buttons -->
 
     <% if(currentUser && currentUser._id.equals(event.owner._id)) { %>
    

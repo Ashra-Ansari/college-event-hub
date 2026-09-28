@@ -34,6 +34,18 @@
 const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
 const mobileMenu = document.querySelector(".mobile-menu");
 
-mobileMenuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("active");
-});
+if (mobileMenuBtn && mobileMenu) {
+  const menuIcon = mobileMenuBtn.querySelector("i");
+
+  mobileMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+
+    if (mobileMenu.classList.contains("active")) {
+      menuIcon.classList.remove("fa-bars");
+      menuIcon.classList.add("fa-xmark");
+    } else {
+      menuIcon.classList.remove("fa-xmark");
+      menuIcon.classList.add("fa-bars");
+    }
+  });
+}

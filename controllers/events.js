@@ -1,5 +1,6 @@
 const Event = require("../models/event");
 const { cloudinary } = require("../cloudConfig.js");
+const Registration = require("../models/register.js");
 
 module.exports.index = async (req, res) => {
   const allEvents = await Event.find({});
@@ -12,6 +13,7 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.showEvent = async (req, res) => {
   let { id } = req.params;
+
   const event = await Event.findById(id)
     .populate({
       path: "reviews",
@@ -20,13 +22,19 @@ module.exports.showEvent = async (req, res) => {
       },
     })
     .populate("owner");
+
   if (!event) {
     req.flash("error", "Event you requested for does not exist!");
     return res.redirect("/events");
   }
-  res.render("events/show.ejs", { event });
-};
 
+  const registration = await Registration.findOne({
+    event: id,
+    student: req.user?._id,
+  });
+
+  res.render("events/show.ejs", { event, registration });
+};
 module.exports.createEvent = async (req, res, next) => {
   let url = req.file.path;
   let filename = req.file.filename;
@@ -97,4 +105,40 @@ module.exports.filterByCategory = async (req, res) => {
   const categoryName = categoryMap[category];
   const filteredEvents = await Event.find({ category: categoryName });
   res.render("events/filtered.ejs", { filteredEvents, categoryName });
+};
+
+module.exports.renderRegisterForm = async (req, res) => {
+  let { id } = req.params;
+
+  const event = await Event.findById(id);
+
+  res.render("events/register.ejs", { event });
+};
+
+module.exports.registerForEvent = async (req, res) => {
+  const { id } = req.params;
+
+  const alreadyRegistered = await Registration.findOne({
+    event: id,
+    student: req.user._id,
+  });
+
+  if (alreadyRegistered) {
+    req.flash("error", "You are already registered for this event!");
+    return res.redirect(`/events/${id}`);
+  }
+
+  const registration = new Registration({
+    event: id,
+    student: req.user._id,
+    name: req.body.name,
+    email: req.body.email,
+    department: req.body.department,
+    phone: req.body.phone,
+  });
+
+  await registration.save();
+
+  req.flash("success", "Successfully registered for the event!");
+  res.redirect(`/events/${id}`);
 };

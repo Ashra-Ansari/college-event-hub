@@ -57,4 +57,8 @@ router.get(
   wrapAsync(eventController.filterByCategory),
 );
 
+router
+  .route("/:id/register")
+  .get(isLoggedIn, wrapAsync(eventController.renderRegisterForm))
+  .post(isLoggedIn, wrapAsync(eventController.registerForEvent));
 module.exports = router;

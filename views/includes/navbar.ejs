@@ -41,12 +41,14 @@
   <a href="/#featured-how-it-works">How It Works</a>
 
   <% if(!currentUser) { %>
-    <a href="/users/login">Log In</a>
-    <a href="/users/signup">Sign Up</a>
+    <a href="/users/login" class="mobile-auth-link mobile-login">Log In</a>
+     
+    <a href="/users/signup" class="mobile-auth-link mobile-signup">Sign Up</a>
+     
   <% } %>
 
   <% if(currentUser) { %>
-    <a href="/users/logout">Logout</a>
+    <a href="/users/logout" class="mobile-auth-link mobile-logout">Logout</a>
   <% } %>
 </div>
 </div>
